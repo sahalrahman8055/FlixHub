@@ -10,19 +10,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ScreenMainPage extends StatelessWidget {
-   ScreenMainPage({super.key});
+  ScreenMainPage({super.key});
 
-  final pages=[
-     const HomeScreen(),
-     const NewAndHotScreen(),
-     const FastLaughScreen(),
-     const SearchScreen(),
-     DownloadScreen()
+  final pages = [
+    const HomeScreen(),
+    const NewAndHotScreen(),
+    const FastLaughScreen(),
+    const SearchScreen(),
+    DownloadScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Consumer<SelectedIndexProvider>(
           builder: (context, provider, _) {

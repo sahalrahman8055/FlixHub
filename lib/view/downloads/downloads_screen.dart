@@ -2,7 +2,6 @@ import 'package:flixhub/view/downloads/widgets/widgets.dart';
 import 'package:flixhub/view/widgets/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 
-
 class DownloadScreen extends StatelessWidget {
   DownloadScreen({super.key});
   final widgetList = [
@@ -13,7 +12,6 @@ class DownloadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: const PreferredSize(
             preferredSize: Size.fromHeight(50),

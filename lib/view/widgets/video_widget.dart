@@ -1,6 +1,5 @@
-import 'package:flixhub/helpers/colors/colors.dart';
+import 'package:flixhub/helper/colors.dart';
 import 'package:flutter/material.dart';
-
 
 class VideoWidget extends StatelessWidget {
   final String? videoImage;

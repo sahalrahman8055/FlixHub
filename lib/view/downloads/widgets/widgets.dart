@@ -2,13 +2,13 @@ import 'dart:math';
 import 'package:flixhub/constants/constants.dart';
 import 'package:flixhub/controller/internetconnectivity_provider.dart';
 import 'package:flixhub/controller/trendingmovie_intialize_provider.dart';
-import 'package:flixhub/helpers/colors/colors.dart';
+import 'package:flixhub/helper/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
 class SmartDownloads extends StatelessWidget {
-  const SmartDownloads({ 
+  const SmartDownloads({
     super.key,
   });
 
@@ -20,7 +20,7 @@ class SmartDownloads extends StatelessWidget {
           Icons.settings,
           color: KWhiteColor,
         ),
-        KWidth,
+        kWidth,
         Text("Smart Downloads")
       ],
     );
@@ -35,16 +35,14 @@ class CenterSection extends StatefulWidget {
 }
 
 class _CenterSectionState extends State<CenterSection> {
-
   @override
   void initState() {
     super.initState();
-    Provider.of<TrendingMovieInitializeProvider>(context,  listen: false).initializeImages();
-    Provider.of<InternetConnectivityProvider>(context,listen: false).getInternetConnectivity(context);
+    Provider.of<TrendingMovieInitializeProvider>(context, listen: false)
+        .initializeImages();
+    Provider.of<InternetConnectivityProvider>(context, listen: false)
+        .getInternetConnectivity(context);
   }
-  
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -57,58 +55,56 @@ class _CenterSectionState extends State<CenterSection> {
           style: TextStyle(
               color: KWhiteColor, fontSize: 23, fontWeight: FontWeight.bold),
         ),
-        KHeight,
+        kHeight,
         const Text(
           "We wil download a personalised selection of\nmovies and shows for you, so there's\nalways something to watch on your\ndevice",
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.grey, fontSize: 16),
         ),
-        KHeight,
+        kHeight,
         SizedBox(
           width: size.width,
           height: size.width,
           child: Consumer<TrendingMovieInitializeProvider>(
             builder: (context, value, child) {
-              if(value.isLoading){
-                return const Center(child: CircularProgressIndicator(),);
-              }else if (value.imageList.isEmpty){
+              if (value.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (value.imageList.isEmpty) {
                 return const Text("No data available");
-              }else{
-
-                 return     Stack(
-            alignment: Alignment.center,
-            children: value.imageList.length < 3
-                ? []
-                : [
-                    CircleAvatar(
-                      radius: size.width * 0.37,
-                      backgroundColor: Colors.grey.withOpacity(0.5),
-                    ),
-                    DownloadsImageWidget(
-                      imageList: value.imageList[0],
-                      margin: const EdgeInsets.only(left: 170, top: 38),
-                      angle: 25,
-                      size: Size(size.width * 0.35, size.width * 0.55),
-                    ),
-                    DownloadsImageWidget(
-                      imageList: value.imageList[1],
-                      margin: const EdgeInsets.only(right: 170, top: 38),
-                      angle: -25,
-                      size: Size(size.width * 0.35, size.width * 0.55),
-                    ),
-                    DownloadsImageWidget(
-                      imageList: value.imageList[2],
-                      margin: const EdgeInsets.only(bottom: 25, top: 38),
-                      size: Size(size.width * 0.4, size.width * 0.6),
-                      radius: 8,
-                    ),
-                  ],
-              );
-
+              } else {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: value.imageList.length < 3
+                      ? []
+                      : [
+                          CircleAvatar(
+                            radius: size.width * 0.37,
+                            backgroundColor: Colors.grey.withOpacity(0.5),
+                          ),
+                          DownloadsImageWidget(
+                            imageList: value.imageList[0],
+                            margin: const EdgeInsets.only(left: 170, top: 38),
+                            angle: 25,
+                            size: Size(size.width * 0.35, size.width * 0.55),
+                          ),
+                          DownloadsImageWidget(
+                            imageList: value.imageList[1],
+                            margin: const EdgeInsets.only(right: 170, top: 38),
+                            angle: -25,
+                            size: Size(size.width * 0.35, size.width * 0.55),
+                          ),
+                          DownloadsImageWidget(
+                            imageList: value.imageList[2],
+                            margin: const EdgeInsets.only(bottom: 25, top: 38),
+                            size: Size(size.width * 0.4, size.width * 0.6),
+                            radius: 8,
+                          ),
+                        ],
+                );
               }
-             
             },
-         
           ),
         ),
       ],
@@ -142,7 +138,7 @@ class BottomSection extends StatelessWidget {
             ),
           ),
         ),
-        KHeight,
+        kHeight,
         MaterialButton(
           color: kBottonColorWhite,
           onPressed: () {},

@@ -1,4 +1,3 @@
-
 import 'package:flixhub/controller/bottomnavbar_provider.dart';
 import 'package:flixhub/controller/home_screen_backgroundcard_provider.dart';
 import 'package:flixhub/controller/home_scrollprovider.dart';
@@ -10,13 +9,12 @@ import 'package:flixhub/controller/searchresult_provider.dart';
 import 'package:flixhub/controller/trendingmovie_intialize_provider.dart';
 import 'package:flixhub/controller/tvtoprate_provider.dart';
 import 'package:flixhub/controller/videoplayer_provider.dart';
-import 'package:flixhub/helpers/colors/colors.dart';
+import 'package:flixhub/helper/colors.dart';
 import 'package:flixhub/view/mainpage/screen_main_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 
 void main() {
   runApp(const MyApp());

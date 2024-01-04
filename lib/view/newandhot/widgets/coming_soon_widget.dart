@@ -19,25 +19,29 @@ class _ComingSoonWidgetState extends State<ComingSoonWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<NewAndHotProvider>(context,listen: false).fetchComingSoonMovies();
-    Provider.of<InternetConnectivityProvider>(context,listen: false).getInternetConnectivity(context);
+    Provider.of<NewAndHotProvider>(context, listen: false)
+        .fetchComingSoonMovies();
+    Provider.of<InternetConnectivityProvider>(context, listen: false)
+        .getInternetConnectivity(context);
   }
+
   @override
   Widget build(BuildContext context) {
-     
     return Consumer<NewAndHotProvider>(
       builder: (context, comingSoonProvider, child) {
         if (comingSoonProvider.isLoading) {
-          return const Center(child: CircularProgressIndicator(),);
-          
-        }else if(comingSoonProvider.upcomingMovies.isEmpty){
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (comingSoonProvider.upcomingMovies.isEmpty) {
           return const Text("No data available");
         }
         return ListView.builder(
-            itemCount:comingSoonProvider.upcomingMovies.length,
-            itemBuilder:(
-              
-              context, index) => ComingSoonInfoCard(movieInfo: comingSoonProvider.upcomingMovies[index],),);
+          itemCount: comingSoonProvider.upcomingMovies.length,
+          itemBuilder: (context, index) => ComingSoonInfoCard(
+            movieInfo: comingSoonProvider.upcomingMovies[index],
+          ),
+        );
       },
       // child: FutureBuilder(
       //   future:apiCall(ApiEndPoints.upcoming),
@@ -48,20 +52,19 @@ class _ComingSoonWidgetState extends State<ComingSoonWidget> {
       //           children: [
       //              CircularProgressIndicator(color: Colors.blue,),
       //                       Text('Please wait'),
-    
+
       //           ],
       //         ),
       //       );
       //      }
-    
+
       //      if(snapshot.data==null){
       //       return const Text('No data found');
-    
+
       //      }
-    
-      //      return 
+
+      //      return
       //    },),
     );
   }
 }
-

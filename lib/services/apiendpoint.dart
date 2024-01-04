@@ -1,5 +1,3 @@
-
-
 import 'package:flixhub/constants/string.dart';
 import 'package:flixhub/services/api_key.dart';
 

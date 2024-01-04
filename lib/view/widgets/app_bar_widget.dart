@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../../constants/constants.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -21,13 +20,13 @@ class AppBarWidget extends StatelessWidget {
           color: Colors.white,
           size: 30,
         ),
-        KWidth,
+        kWidth,
         SizedBox(
           width: 30,
           height: 30,
           child: Image.asset("assets/avatar.png"),
         ),
-        KWidth
+        kWidth
       ],
     );
   }

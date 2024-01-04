@@ -1,9 +1,8 @@
 import 'package:flixhub/constants/constants.dart';
-import 'package:flixhub/helpers/colors/colors.dart';
+import 'package:flixhub/helper/colors.dart';
 import 'package:flixhub/view/newandhot/widgets/coming_soon_widget.dart';
 import 'package:flixhub/view/newandhot/widgets/everyones_watching_widget.dart';
 import 'package:flutter/material.dart';
-
 
 class NewAndHotScreen extends StatelessWidget {
   const NewAndHotScreen({super.key});
@@ -26,13 +25,13 @@ class NewAndHotScreen extends StatelessWidget {
                     color: Colors.white,
                     size: 30,
                   ),
-                  KWidth,
+                  kWidth,
                   SizedBox(
                     width: 30,
                     height: 30,
                     child: Image.asset("assets/avatar.png"),
                   ),
-                  KWidth
+                  kWidth
                 ],
                 bottom: TabBar(
                     unselectedLabelColor: KWhiteColor,
@@ -54,9 +53,7 @@ class NewAndHotScreen extends StatelessWidget {
                     ]),
               )),
           body: TabBarView(
-            children: [_buildComingSoon(context),
-             _BuildEveryonesWatching()
-             ],
+            children: [_buildComingSoon(context), _BuildEveryonesWatching()],
           )),
     );
   }
@@ -68,6 +65,4 @@ Widget _BuildEveryonesWatching() {
 
 Widget _buildComingSoon(BuildContext context) {
   return const ComingSoonWidget();
-    }
-
-
+}

@@ -1,7 +1,7 @@
 import 'package:flixhub/constants/constants.dart';
 import 'package:flixhub/controller/internetconnectivity_provider.dart';
 import 'package:flixhub/controller/searchidl_provider.dart';
-import 'package:flixhub/helpers/colors/colors.dart';
+import 'package:flixhub/helper/colors.dart';
 import 'package:flixhub/model/movie_info_model.dart';
 import 'package:flixhub/view/search/widgets/title.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,8 +20,10 @@ class _SearchIdleWidgetState extends State<SearchIdleWidget> {
   @override
   void initState() {
     super.initState();
-    Provider.of<SearchIDLProvider>(context, listen: false).fetchSearchIDLMovies();
-        Provider.of<InternetConnectivityProvider>(context,listen: false).getInternetConnectivity(context);
+    Provider.of<SearchIDLProvider>(context, listen: false)
+        .fetchSearchIDLMovies();
+    Provider.of<InternetConnectivityProvider>(context, listen: false)
+        .getInternetConnectivity(context);
   }
 
   @override
@@ -32,21 +34,22 @@ class _SearchIdleWidgetState extends State<SearchIdleWidget> {
         const SearchTextTitle(
           title: "Top Searches",
         ),
-        KHeight,
+        kHeight,
         Expanded(
           child: Consumer<SearchIDLProvider>(
             builder: (context, value, child) {
-              if(value.isLoading){
-                return const Center(child: CircularProgressIndicator(),);
-              }else if(value.trendingMovies.isEmpty){
+              if (value.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (value.trendingMovies.isEmpty) {
                 return const Text("NO data available");
-
               }
               return ListView.separated(
                 shrinkWrap: true,
                 itemBuilder: (context, index) =>
                     TopSearchItemTile(movieInfo: value.trendingMovies[index]),
-                separatorBuilder: (context, index) => KHeight20,
+                separatorBuilder: (context, index) => kHeight20,
                 itemCount: value.trendingMovies.length,
               );
             },
@@ -76,7 +79,7 @@ class TopSearchItemTile extends StatelessWidget {
               image:
                   DecorationImage(fit: BoxFit.cover, image: NetworkImage(url))),
         ),
-        KWidth,
+        kWidth,
         Expanded(
           child: Text(
             movieInfo.title ?? "No Movie Name Found",

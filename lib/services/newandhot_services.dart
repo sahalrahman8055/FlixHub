@@ -1,11 +1,9 @@
-
-
 import 'package:flixhub/model/movie_info_model.dart';
 import 'package:flixhub/services/base_client.dart';
 
 import 'apiendpoint.dart';
 
-class NewAndHotServices{
+class NewAndHotServices {
   List<MovieInfoModel> upcomingMovies = [];
   List<MovieInfoModel> moviepopular = [];
 
@@ -20,9 +18,7 @@ class NewAndHotServices{
     return upcomingMovies;
   }
 
-
-
- Future fetchMoviePopular() async {
+  Future fetchMoviePopular() async {
     try {
       final movies = await apiCall(ApiEndPoints.moviepopular);
       moviepopular = movies.results;
@@ -32,10 +28,4 @@ class NewAndHotServices{
     }
     return moviepopular;
   }
-
 }
-
-
-
-
-

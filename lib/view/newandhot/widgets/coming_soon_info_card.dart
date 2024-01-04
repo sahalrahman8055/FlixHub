@@ -1,11 +1,10 @@
 import 'package:flixhub/constants/constants.dart';
-import 'package:flixhub/helpers/colors/colors.dart';
+import 'package:flixhub/helper/colors.dart';
 import 'package:flixhub/model/movie_info_model.dart';
 import 'package:flixhub/view/home/widgets/button_widget.dart';
 import 'package:flixhub/view/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 
 class ComingSoonInfoCard extends StatelessWidget {
   final MovieInfoModel movieInfo;
@@ -49,21 +48,21 @@ class ComingSoonInfoCard extends StatelessWidget {
                         iconSize: 20,
                         textSize: 12,
                       ),
-                      KWidth,
+                      kWidth,
                       CustomButtonWidget(
                         icon: Icons.info,
                         title: "Info",
                         iconSize: 20,
                         textSize: 12,
                       ),
-                      KWidth
+                      kWidth
                     ],
                   ),
                 ],
               ),
-              KHeight,
+              kHeight,
               Text("Coming on ${fetchDay(movieInfo.releaseDate!)}"),
-              KHeight,
+              kHeight,
               Text(
                 movieInfo.originalTitle ?? 'Empty Title',
                 style: const TextStyle(
@@ -71,7 +70,7 @@ class ComingSoonInfoCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              KHeight,
+              kHeight,
               Text(
                 movieInfo.overview,
                 style: const TextStyle(color: kGreyColor),
