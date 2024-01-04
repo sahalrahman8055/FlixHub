@@ -1,14 +1,14 @@
-import 'package:flixhub/helper/colors/colors.dart';
-
+import 'package:flixhub/helpers/colors/colors.dart';
 import 'package:flutter/material.dart';
 
+
 class VideoWidget extends StatelessWidget {
+  final String? videoImage;
   const VideoWidget({
     super.key,
-    required this.imageurl,
+    this.videoImage,
   });
 
-  final String imageurl;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -17,7 +17,7 @@ class VideoWidget extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.network(
-            imageurl,
+            '$videoImage',
             fit: BoxFit.cover,
           ),
         ),
@@ -25,13 +25,13 @@ class VideoWidget extends StatelessWidget {
           bottom: 10,
           right: 10,
           child: CircleAvatar(
-            radius: 22,
             backgroundColor: Colors.black.withOpacity(0.5),
+            radius: 22,
             child: IconButton(
               onPressed: () {},
               icon: const Icon(
                 Icons.volume_off,
-                color: kWhiteColor,
+                color: KWhiteColor,
                 size: 20,
               ),
             ),

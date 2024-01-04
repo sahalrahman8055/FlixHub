@@ -1,30 +1,56 @@
-import 'package:flixhub/helper/colors/colors.dart';
-import 'package:flixhub/constants/constance.dart';
+import 'package:flixhub/constants/constants.dart';
+import 'package:flixhub/controller/internetconnectivity_provider.dart';
+import 'package:flixhub/controller/searchidl_provider.dart';
+import 'package:flixhub/helpers/colors/colors.dart';
+import 'package:flixhub/model/movie_info_model.dart';
 import 'package:flixhub/view/search/widgets/title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const imageUrl =
-    "https://www.themoviedb.org/t/p/w250_and_h141_face/mowTk9LFSr8rW3EG2CUSwzuvx0g.jpg";
+import 'package:provider/provider.dart';
 
-class SearchIdleWidget extends StatelessWidget {
+class SearchIdleWidget extends StatefulWidget {
   const SearchIdleWidget({super.key});
+
+  @override
+  State<SearchIdleWidget> createState() => _SearchIdleWidgetState();
+}
+
+class _SearchIdleWidgetState extends State<SearchIdleWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<SearchIDLProvider>(context, listen: false).fetchSearchIDLMovies();
+        Provider.of<InternetConnectivityProvider>(context,listen: false).getInternetConnectivity(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Top Search",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        const SearchTextTitle(
+          title: "Top Searches",
         ),
-        kHeight,
+        KHeight,
         Expanded(
-          child: ListView.separated(
-              itemBuilder: (ctx, index) => const TopSearchItemTile(),
-              separatorBuilder: (ctx, index) => kHeight20,
-              itemCount: 10),
+          child: Consumer<SearchIDLProvider>(
+            builder: (context, value, child) {
+              if(value.isLoading){
+                return const Center(child: CircularProgressIndicator(),);
+              }else if(value.trendingMovies.isEmpty){
+                return const Text("NO data available");
+
+              }
+              return ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) =>
+                    TopSearchItemTile(movieInfo: value.trendingMovies[index]),
+                separatorBuilder: (context, index) => KHeight20,
+                itemCount: value.trendingMovies.length,
+              );
+            },
+          ),
         )
       ],
     );
@@ -32,36 +58,44 @@ class SearchIdleWidget extends StatelessWidget {
 }
 
 class TopSearchItemTile extends StatelessWidget {
-  const TopSearchItemTile({super.key});
+  final MovieInfoModel movieInfo;
+  const TopSearchItemTile({super.key, required this.movieInfo});
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    String url =
+        'https://image.tmdb.org/t/p/w500${movieInfo.posterPath}?api_key=b2dee3b855c4ea705ff5dda3c0201768';
+
     return Row(
       children: [
         Container(
           width: screenWidth * 0.35,
           height: 65,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(imageUrl), fit: BoxFit.cover)),
+          decoration: BoxDecoration(
+              image:
+                  DecorationImage(fit: BoxFit.cover, image: NetworkImage(url))),
         ),
-        const Expanded(
-            child: Center(
-          child: SearchTextTitle(title: "Top Searches"),
-        )),
+        KWidth,
+        Expanded(
+          child: Text(
+            movieInfo.title ?? "No Movie Name Found",
+            style: const TextStyle(
+                color: KWhiteColor, fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+        ),
         const CircleAvatar(
-          backgroundColor: kWhiteColor,
+          backgroundColor: KWhiteColor,
           radius: 25,
           child: CircleAvatar(
             backgroundColor: kBlackColor,
             radius: 23,
             child: Icon(
               CupertinoIcons.play_fill,
-              color: kWhiteColor,
+              color: KWhiteColor,
             ),
           ),
-        ),
+        )
       ],
     );
   }

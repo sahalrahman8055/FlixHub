@@ -1,12 +1,13 @@
 import 'package:bordered_text/bordered_text.dart';
-import 'package:flixhub/helper/colors/colors.dart';
-import 'package:flixhub/constants/constance.dart';
+import 'package:flixhub/constants/constants.dart';
+import 'package:flixhub/helpers/colors/colors.dart';
 import 'package:flutter/material.dart';
 
-class NumberCard extends StatelessWidget {
-  const NumberCard({super.key, required this.index});
 
+class NumberCard extends StatelessWidget {
+  const NumberCard({super.key,required this.index,required this.imageUrl});
   final int index;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -14,40 +15,31 @@ class NumberCard extends StatelessWidget {
       children: [
         Row(
           children: [
-            SizedBox(
-              width: 40,
-              height: 150,
-            ),
+            const SizedBox(
+              width: 40,height: 200,),
             Container(
               width: 130,
-              height: 300,
+              height: 200,
               decoration: BoxDecoration(
-                borderRadius: kredius10,
-                image: const DecorationImage(
+                borderRadius: kRadius10,
+                image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qjhahNLSZ705B5JP92YMEYPocPz.jpg"),
-                ),
+                  image: NetworkImage(imageUrl))
               ),
             ),
           ],
         ),
         Positioned(
-            left: 12,
-            bottom: 1,
-            child: BorderedText(
-              strokeColor: Colors.white,
-              strokeWidth: 10,
-              child: Text(
-                "${index + 1} ",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.none,
-                    decorationColor: kBlackColor,
-                    fontSize: 100),
-              ),
-            ))
+          left: 13,
+          bottom: -20,
+          child: BorderedText(
+            strokeColor:KWhiteColor,
+            strokeWidth: 9.0,
+            child: Text("${index+1}",style: const TextStyle(
+              fontSize: 140,
+              color: kBlackColor,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.none,),))),
       ],
     );
   }

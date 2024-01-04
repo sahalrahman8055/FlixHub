@@ -1,24 +1,25 @@
-import 'package:flixhub/constants/constance.dart';
+import 'package:flixhub/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class MainCard extends StatelessWidget {
-  const MainCard({
+
+class MainCardWidget extends StatelessWidget {
+  final String imageUrlFromApi;
+  const MainCardWidget({
     super.key,
+    required this.imageUrlFromApi
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal:10),
       width: 130,
-      height: 300,
+      height: 250,
       decoration: BoxDecoration(
-        borderRadius: kredius10,
-        image: const DecorationImage(
+        borderRadius: kRadius10,
+        image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(
-              "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8xV47NDrjdZDpkVcCFqkdHa3T0C.jpg"),
-        ),
+          image: NetworkImage(imageUrlFromApi))
       ),
     );
   }

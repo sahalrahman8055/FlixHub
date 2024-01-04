@@ -4,14 +4,14 @@ class SearchTextTitle extends StatelessWidget {
   final String title;
   const SearchTextTitle({
     super.key,
-    required this.title,
+    required this.title
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
     );
   }
 }
